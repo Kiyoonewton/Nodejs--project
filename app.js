@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
+const productsRouter = require("./route/productsRouter");
 
 const notFound = require("./middleware/not-found");
 const errorHandler = require("./middleware/error-handler");
 const { default: mongoose } = require("mongoose");
 
-const port = 5000;
+const port = 3000;
 
 //middleware
 app.use(express.json());
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 });
 
 //product routes
+app.use("/api/v1/products", productsRouter);
 
 //error handling
 app.use(notFound);
